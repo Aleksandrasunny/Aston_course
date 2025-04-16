@@ -1,17 +1,49 @@
-package org.example;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Правильный массив
+        String[][] correctArray = {
+                {"1", "2", "3", "4"},
+                {"5", "6", "7", "8"},
+                {"9", "10", "11", "12"},
+                {"13", "14", "15", "16"}
+        };
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        // Массив с ошибкой в данных
+        String[][] invalidDataArray = {
+                {"1", "2", "3", "4"},
+                {"5", "6", "7", "8"},
+                {"9", "10", "11a", "12"},
+                {"13", "14", "15", "16"}
+        };
+
+        // Массив неправильного размера
+        String[][] wrongSizeArray = {
+                {"1", "2", "3"},
+                {"5", "6", "7"},
+                {"9", "10", "11"}
+        };
+
+        // Тестируем правильный массив
+        try {
+            System.out.println("Сумма правильного массива: " + ArrayCalc.sumStringArray(correctArray));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            System.out.println("Ошибка: " + e.getMessage());
         }
+
+        // Тестируем массив с ошибкой в данных
+        try {
+            System.out.println("Сумма массива с ошибкой данных: " + ArrayCalc.sumStringArray(invalidDataArray));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        }
+
+        // Тестируем массив неправильного размера
+        try {
+            System.out.println("Сумма массива неправильного размера: " + ArrayCalc.sumStringArray(wrongSizeArray));
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        }
+
+        ArrayCalc.generateArrayIndexOutOfBoundsException();
     }
 }
